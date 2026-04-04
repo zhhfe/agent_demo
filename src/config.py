@@ -27,6 +27,7 @@ BYTEPLUS_DOMAIN = _getenv_first("BYTEPLUS_DOMAIN")
 BYTEPLUS_API_KEY = _getenv_first("BYTEPLUS_API_KEY")
 BYTEPLUS_SEED = _getenv_first("BYTEPLUS_SEED")
 TAVILY_API_KEY = _getenv_first("TAVILY_API_KEY")
+SERPAPI_API_KEY = _getenv_first("SERPAPI_API_KEY")
 
 
 def validate_required_config() -> None:

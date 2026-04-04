@@ -3,9 +3,10 @@ from typing import List, Dict
 from openai import OpenAI
 
 
-class HelloAgentsLLLM:
-    def __init__(self, model: str = config.BYTEPLUS_SEED,
-                 apiKey: str = config.BYTEPLUS_API_KEY, baseUrl: str = config.BYTEPLUS_DOMAIN, timeout: int = 60):
+class HelloAgentsLLM:
+    def __init__(self, model: str = config.BYTEPLUS_SEED, apiKey: str = config.BYTEPLUS_API_KEY,
+                 baseUrl: str = config.BYTEPLUS_DOMAIN, timeout: int = 60):
+
         self.apiKey = apiKey
         self.model = model
         self.baseUrl = baseUrl
@@ -16,7 +17,7 @@ class HelloAgentsLLLM:
 
         self.client = OpenAI(api_key=apiKey, base_url=baseUrl, timeout=timeout)
 
-    def think(self, messages: List[Dict[str,str]], temperature: float = 0):
+    def think(self, messages: List[Dict[str, str]], temperature: float = 0):
         print(f"🧠 正在调用 {self.model} 模型...")
         try:
             response = self.client.chat.completions.create(
@@ -33,8 +34,7 @@ class HelloAgentsLLLM:
                 content = chunk.choices[0].delta.content or ""
                 print(content, end="", flush=True)
                 collected_content.append(content)
-            print()  # 在流式输出结束后换行
-            return
+            return "".join(collected_content)
 
         except Exception as e:
             print(f"❌ 调用LLM API时发生错误: {e}")
@@ -42,7 +42,7 @@ class HelloAgentsLLLM:
 
 
 if __name__ == "__main__":
-    llm = HelloAgentsLLLM()
+    llm = HelloAgentsLLM()
     exampleMessages = [
         {"role": "system", "content": "You are a helpful assistant that writes Python code."},
         {"role": "user", "content": "介绍下你自己"}

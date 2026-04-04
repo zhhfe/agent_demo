@@ -1,4 +1,5 @@
 import re
+from typing import Optional
 
 from src.quick_start.llm import OpenAICompatibleClient
 from src.config import BYTEPLUS_DOMAIN, BYTEPLUS_API_KEY, BYTEPLUS_SEED, validate_required_config
@@ -65,7 +66,3 @@ def main():
         observation_str = f"Observation: {observation}"
         print(f"{observation_str}\n" + "="*40)
         prompt_history.append(observation_str)
-
-
-if __name__ == "__main__":
-    main()
